@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RoundInProgress from "../components/Rounds/RoundInProgress";
+import RoundInProgress from "../components/rounds/RoundInProgress";
 import { courses } from "../data/courses";
 import { saveRound } from "../utils/db";
 
@@ -9,7 +9,7 @@ export default function Rounds() {
   const [showModal, setShowModal] = useState(false);
   const [roundDate, setRoundDate] = useState(() => new Date().toISOString().split("T")[0]);
 
-  const startRound = (courseId, playerName, roundDate) => {
+  const startRound = (courseId, roundDate) => {
     setRound({
       courseId,
       currentHole: 1,
@@ -85,12 +85,11 @@ export default function Rounds() {
                 </button>
                 <button
                   onClick={() => {
-                    if (selectedCourse && playerName) {
-                      startRound(selectedCourse.id, playerName, roundDate);
+                    if (selectedCourse) {
+                      startRound(selectedCourse.id, roundDate);
                       setShowModal(false);
                     }
                   }}
-                  disabled={!playerName}
                   className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 disabled:bg-gray-400"
                 >
                   Start Round
