@@ -82,7 +82,6 @@ export async function saveRound(roundObj) {
       id: roundId,
       course_id: roundObj.courseId,
       date_played,
-      playerName: roundObj.playerName,
       score: roundObj.score
     });
 
